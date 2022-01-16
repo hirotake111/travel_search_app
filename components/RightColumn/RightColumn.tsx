@@ -1,6 +1,5 @@
+import { Box } from "@chakra-ui/react";
 import GoogleMapReact from "google-map-react";
-
-import styles from "./RightColumn.module.css";
 
 export default function RightColumn() {
   const coordinates: GoogleMapReact.Coords = {
@@ -10,7 +9,7 @@ export default function RightColumn() {
   const zoom = 11;
 
   return (
-    <div className={styles.rightColumn}>
+    <Box h="100%">
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_APIKEY || "" }}
         defaultCenter={coordinates}
@@ -20,6 +19,8 @@ export default function RightColumn() {
         // onChange={}
         // onChildClick={}
       ></GoogleMapReact>
-    </div>
+    </Box>
+    // <div className={styles.rightColumn}>
+    // </div>
   );
 }

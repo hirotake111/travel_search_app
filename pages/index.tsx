@@ -1,23 +1,28 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Header from "../components/Header/Header";
 import LeftColumn from "../components/LeftColumn/LeftColumn";
 import RightColumn from "../components/RightColumn/RightColumn";
 
-import styles from "../styles/Home.module.css";
-
 const Home: NextPage = () => {
   return (
-    <main className={styles.main}>
+    <main
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100vw",
+        height: "100vh",
+      }}
+    >
       <Header />
-      <Box display="flex" height="100%">
-        <div className={styles.main__left}>
+      <Flex display="flex" height="100%">
+        <Box flex={1}>
           <LeftColumn />
-        </div>
-        <div className={styles.main__right}>
+        </Box>
+        <Box flex={2} display={{ base: "none", sm: "none", md: "block" }}>
           <RightColumn />
-        </div>
-      </Box>
+        </Box>
+      </Flex>
     </main>
   );
 };
