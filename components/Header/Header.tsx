@@ -7,13 +7,14 @@ import Link from "next/link";
 export default function Header() {
   return (
     <Box
-      h="80px"
-      p="0 40px"
+      h={{ sm: "120px", md: "80px" }}
+      p="12px 40px"
       display="flex"
+      flexDirection={{ base: "column", sm: "column", md: "row" }}
       justifyContent="space-between"
       alignItems="center"
     >
-      <Text fontSize="2xl">
+      <Text fontSize={{ base: "2xl", md: "md", lg: "2xl" }}>
         <Link href="/">Travel Advisor Search</Link>
       </Text>
       <Searchbar />

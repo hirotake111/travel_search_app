@@ -1,10 +1,9 @@
-import { Box, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import styles from "./Searchbar.module.css";
 
 export default function Searchbar() {
   return (
-    <InputGroup width="50%">
+    <InputGroup width={{ base: "80%", sm: "50%", md: "300px" }}>
       <InputLeftElement
         pointerEvents="none"
         children={<SearchIcon color="gray.300" />}
