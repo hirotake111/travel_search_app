@@ -1,6 +1,14 @@
-import { IconButton, HStack, useColorMode, Link } from "@chakra-ui/react";
+import {
+  IconButton,
+  HStack,
+  useColorMode,
+  Link,
+  Switch,
+  Divider,
+} from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import { FaGithub } from "react-icons/fa";
+import { useEffect } from "react";
 
 export default function ButtonList() {
   const { colorMode, setColorMode } = useColorMode();
@@ -11,15 +19,19 @@ export default function ButtonList() {
 
   return (
     <HStack display="flex">
-      {/** dark mode button */}
+      {/** GitHub link */}
       <Link href="https://github.com/hirotake111" isExternal>
         <IconButton aria-label="GitHub" icon={<FaGithub />} />
       </Link>
-      <IconButton
-        aria-label="Dark mode"
-        icon={colorMode === "light" ? <SunIcon /> : <MoonIcon />}
-        onClick={handleClick}
+
+      {/** dark mode button */}
+      <SunIcon />
+      <Switch
+        size="lg"
+        isChecked={colorMode === "dark" ? true : false}
+        onChange={handleClick}
       />
+      <MoonIcon />
     </HStack>
   );
 }

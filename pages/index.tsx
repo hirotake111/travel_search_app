@@ -1,4 +1,4 @@
-import { Grid, Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Header from "../components/Header/Header";
 import LeftColumn from "../components/LeftColumn/LeftColumn";
@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   return (
     <main className={styles.main}>
       <Header />
-      <Box display="flex">
+      <Box display="flex" height="100%">
         <div className={styles.main__left}>
           <LeftColumn />
         </div>

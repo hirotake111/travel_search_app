@@ -1,8 +1,8 @@
 import { Box, Text } from "@chakra-ui/react";
-import Searchbar from "../Searchbar/Searchbar";
+import Searchbar from "../search/Searchbar/Searchbar";
 import ButtonList from "../ButtonList/ButtonLIst";
 
-import styles from "./Header.module.css";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -13,7 +13,9 @@ export default function Header() {
       justifyContent="space-between"
       alignItems="center"
     >
-      <Text fontSize="2xl">Food Search</Text>
+      <Text fontSize="2xl">
+        <Link href="/">Travel Advisor Search</Link>
+      </Text>
       <Searchbar />
       <ButtonList />
     </Box>
