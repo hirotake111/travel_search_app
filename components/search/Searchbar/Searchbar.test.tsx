@@ -1,1 +1,0 @@
-import Searchbar from "./Searchbar";
