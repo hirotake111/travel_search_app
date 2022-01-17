@@ -16,7 +16,9 @@ export default function RightColumn() {
         center={coordinates}
         defaultZoom={zoom}
         // options={}
-        // onChange={}
+        onChange={(e) => {
+          console.log(e);
+        }}
         // onChildClick={}
       ></GoogleMapReact>
     </Box>
