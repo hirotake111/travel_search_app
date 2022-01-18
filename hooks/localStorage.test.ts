@@ -8,16 +8,16 @@ beforeEach(() => {
 
 it("should return null as default value", () => {
   const { result } = renderHook(() => useLocalStorage("key"));
-  expect(result.current.value).toBe(null);
+  expect(result.current[0]).toBe(null);
 });
 
 it("should return value after setting value", () => {
   const data = { name: "hiro", age: 13 };
   const { result } = renderHook(() => useLocalStorage("key"));
   act(() => {
-    result.current.setValue(data);
+    result.current[1](data);
   });
-  expect(result.current.value).toEqual(data);
+  expect(result.current[0]).toEqual(data);
 });
 
 it("should return value if data exists in local storage", () => {
@@ -26,5 +26,5 @@ it("should return value if data exists in local storage", () => {
   const data = { name: "dave", age: 50 };
   window.localStorage.setItem(key, JSON.stringify(data));
   const { result } = renderHook(() => useLocalStorage(key));
-  expect(result.current.value).toEqual(data);
+  expect(result.current[0]).toEqual(data);
 });

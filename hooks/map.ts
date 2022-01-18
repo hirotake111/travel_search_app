@@ -27,7 +27,8 @@ const defaultBounds = {
 };
 
 export const useCoordinates = (getCrrentPosition: boolean) => {
-  const [coordinates, setCoordinates] = useState<Coords>(defaultCoords);
+  // const [coordinates, setCoordinates] = useLocalStorage<Coords>("coords");
+  const [coordinates, setCoordinates] = useState<Coords>();
   const [boundaries, setBoundaries] = useState<Bounds>(defaultBounds);
   const [zoom, setZoom] = useState(11);
 
