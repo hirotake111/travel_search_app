@@ -13,7 +13,7 @@ export default function RightColumn() {
     useCoordinates(true);
 
   return (
-    <Box h="100%">
+    <Box h="100%" bgColor="ThreeDDarkShadow">
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_APIKEY || "" }}
         // defaultCenter={coordinates}
@@ -26,6 +26,7 @@ export default function RightColumn() {
           // set coordinates and boundaries
           setCoordinates({ ...e.center });
           setBoundaries({ ...e.bounds });
+          // get place data too
         }}
         // onChildClick={}
       ></GoogleMapReact>

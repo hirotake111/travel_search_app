@@ -1,27 +1,16 @@
-import { useEffect } from "react";
-import { Box, Button } from "@chakra-ui/react";
-import axios from "axios";
+import { Box } from "@chakra-ui/react";
+import { useAppSelector } from "../../redux/store";
 
 export default function List() {
-  // useEffect(() => {
-  //   (async () => {
-  //     const response = await axios.get("/api/hello");
-  //     console.log(response.data);
-  //   })();
-  // }, []);
-  const handleClick = async () => {
-    const response = await axios.get("/api/search?city=new%20york");
-    console.log(response.data);
-  };
+  const { places } = useAppSelector((state) => state.search);
 
   return (
     <Box>
-      <Item />
-      <Button onClick={handleClick}>push</Button>
+      <div>
+        {places.map((place) => (
+          <div key={place.location_id || place.name}>{place.name}</div>
+        ))}
+      </div>
     </Box>
   );
 }
-
-const Item = () => {
-  return <span>item</span>;
-};

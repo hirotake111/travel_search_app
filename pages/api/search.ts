@@ -29,4 +29,5 @@ export default async function handler(
   res.status(200).json({
     result: response.data,
   });
+  // res.status(200).send({ result: req.query });
 }

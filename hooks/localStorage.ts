@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useLocalStorage = <T>(key: string) => {
-  const [value, setValue] = useState<T | null>(null);
+  const [value, setValue] = useState<T | undefined>(undefined);
 
   useEffect(() => {
     // if value exists in local storage, set it
@@ -12,9 +12,7 @@ export const useLocalStorage = <T>(key: string) => {
 
   const update = (value: T) => {
     window.localStorage.setItem(key, JSON.stringify(value));
-    const current = get();
-    console.log("setting value ", current);
-    setValue(current);
+    setValue(value);
   };
 
   const get = () => {

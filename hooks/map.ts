@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Coords, Bounds } from "google-map-react";
+import { useLocalStorage } from "./localStorage";
 
 const defaultCoords = {
   lat: 51.5072, // default -> London
@@ -27,8 +28,8 @@ const defaultBounds = {
 };
 
 export const useCoordinates = (getCrrentPosition: boolean) => {
-  // const [coordinates, setCoordinates] = useLocalStorage<Coords>("coords");
-  const [coordinates, setCoordinates] = useState<Coords>();
+  const [coordinates, setCoordinates] = useLocalStorage<Coords>("coords");
+  // const [coordinates, setCoordinates] = useState<Coords>();
   const [boundaries, setBoundaries] = useState<Bounds>(defaultBounds);
   const [zoom, setZoom] = useState(11);
 
