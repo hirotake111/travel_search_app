@@ -3,11 +3,6 @@ import GoogleMapReact from "google-map-react";
 
 import { useCoordinates } from "../../hooks/map";
 
-const defaultCoords = {
-  lat: 51.5072, // default -> London
-  lng: 0.1276,
-};
-
 export default function RightColumn() {
   const { coordinates, setCoordinates, setBoundaries, zoom } =
     useCoordinates(true);
@@ -26,7 +21,6 @@ export default function RightColumn() {
           // set coordinates and boundaries
           setCoordinates({ ...e.center });
           setBoundaries({ ...e.bounds });
-          // get place data too
         }}
         // onChildClick={}
       ></GoogleMapReact>

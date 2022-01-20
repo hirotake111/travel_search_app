@@ -1,4 +1,6 @@
-declare type Place = {
+import { Bounds, Coords } from "google-map-react";
+
+export type Place = {
   location_id: string;
   name: string;
   latitude: string;
@@ -79,6 +81,9 @@ declare type Place = {
   listing_key: string;
 };
 
-declare type SearchState = {
+export type SearchState = {
   places: Place[];
+  coordinates: Coords;
+  bounds: Bounds;
+  zoom: number;
 };
