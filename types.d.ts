@@ -8,7 +8,7 @@ export type Place = {
   num_reviews: string;
   timezone: string;
   location_string: string;
-  photo: {
+  photo?: {
     images?: {
       small: {
         width: string;

@@ -16,10 +16,10 @@ const Home: NextPage = () => {
     >
       <Header />
       <Flex display="flex" height="100%">
-        <Box flex={1}>
+        <Box flex={2}>
           <LeftColumn />
         </Box>
-        <Box flex={2} display={{ base: "none", sm: "none", md: "block" }}>
+        <Box flex={1} display={{ base: "none", sm: "none", md: "block" }}>
           <RightColumn />
         </Box>
       </Flex>
