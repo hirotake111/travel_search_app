@@ -15,11 +15,11 @@ const Home: NextPage = () => {
       }}
     >
       <Header />
-      <Flex display="flex" height="100%">
+      <Flex h="100%">
         <Box flex={2}>
           <LeftColumn />
         </Box>
-        <Box flex={1} display={{ base: "none", sm: "none", md: "block" }}>
+        <Box flex={1.5} display={{ base: "none", sm: "none", md: "block" }}>
           <RightColumn />
         </Box>
       </Flex>

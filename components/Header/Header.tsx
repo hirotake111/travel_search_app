@@ -7,7 +7,6 @@ import ButtonList from "../ButtonList/ButtonLIst";
 export default function Header() {
   return (
     <Flex
-      h={{ sm: "120px", md: "80px" }}
       p="12px 40px"
       flexDirection={{ base: "column", sm: "column", md: "row" }}
       justifyContent="space-between"
