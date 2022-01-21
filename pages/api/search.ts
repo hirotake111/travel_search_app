@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import axios, { AxiosRequestConfig } from "axios";
+import { GetMockResponse } from "../../utils/mockDdata";
 
 type Data = {
   result: any;
@@ -25,9 +26,9 @@ export default async function handler(
     },
   };
   // perform network call to RapiAPI
-  const response = await axios.request(options);
-  res.status(200).json({
-    result: response.data,
-  });
+  // const { data } = await axios.request(options);
+  const { data } = await GetMockResponse();
+  console.log("response: ", data.data.length);
+  res.status(200).json({ result: data.data });
   // res.status(200).send({ result: req.query });
 }
