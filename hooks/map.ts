@@ -35,7 +35,7 @@ export const useCoordinates = (getCrrentPosition: boolean) => {
 
   // when bounds gets updated, then get new places data
   useEffect(() => {
-    getData(bounds).then((places) => dispatch(updatePlace(places)));
+    getData("hotels", bounds).then((places) => dispatch(updatePlace(places)));
   }, [bounds]);
 
   const setCoordinates = (coordinates: Coords) => {

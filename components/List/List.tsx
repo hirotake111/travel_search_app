@@ -7,10 +7,8 @@ export default function List() {
   return (
     <Box>
       <div>
-        {places.map((place) => (
-          <div key={place.location_id || place.name || place.listing_key}>
-            {place.name}
-          </div>
+        {places.map((place, i) => (
+          <div key={i}>{place.name}</div>
         ))}
       </div>
     </Box>
