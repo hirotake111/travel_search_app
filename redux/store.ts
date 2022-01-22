@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import logger from "redux-logger";
 
 import { searchReducer as search } from "./slices/searchSlice";
 
 export const store = configureStore({
   reducer: { search },
+  middleware: [logger],
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

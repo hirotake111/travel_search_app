@@ -5,30 +5,32 @@ import { Bounds, Coords } from "google-map-react";
 
 const initialState: SearchState = {
   places: [],
-  coordinates: {
-    // default -> London
-    lat: 51.5072,
-    lng: 0.1276,
-  },
-  bounds: {
-    // default -> London
-    nw: {
-      lat: 51.6610098726037,
-      lng: -0.1268021606445302,
-    },
-    se: {
-      lat: 51.35286914757705,
-      lng: 0.3820021606445323,
-    },
-    sw: {
-      lat: 51.35286914757705,
-      lng: -0.1268021606445302,
-    },
-    ne: {
-      lat: 51.6610098726037,
-      lng: 0.3820021606445323,
-    },
-  },
+  // coordinates: {
+  //   // default -> London
+  //   lat: 51.5072,
+  //   lng: 0.1276,
+  // },
+  // bounds: {
+  //   // default -> London
+  //   nw: {
+  //     lat: 51.6610098726037,
+  //     lng: -0.1268021606445302,
+  //   },
+  //   se: {
+  //     lat: 51.35286914757705,
+  //     lng: 0.3820021606445323,
+  //   },
+  //   sw: {
+  //     lat: 51.35286914757705,
+  //     lng: -0.1268021606445302,
+  //   },
+  //   ne: {
+  //     lat: 51.6610098726037,
+  //     lng: 0.3820021606445323,
+  //   },
+  // },
+  coordinates: undefined,
+  bounds: undefined,
   zoom: 11,
 };
 

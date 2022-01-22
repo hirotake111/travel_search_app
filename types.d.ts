@@ -1,13 +1,13 @@
 import { Bounds, Coords } from "google-map-react";
 
 export type Place = {
-  location_id: string;
-  name: string;
+  location_id?: string;
+  name?: string;
   latitude: string;
   longitude: string;
-  num_reviews: string;
-  timezone: string;
-  location_string: string;
+  num_reviews?: string;
+  timezone?: string;
+  location_string?: string;
   photo?: {
     images?: {
       small: {
@@ -48,42 +48,51 @@ export type Place = {
       type: string;
     };
   };
-  awards: string[];
-  preferred_map_engine: string;
-  autobroaden_type: string;
-  autobroaden_label: string;
-  raw_ranking: string;
-  ranking_geo: string;
-  ranking_geo_id: string;
-  ranking_position: string;
-  ranking_denominator: string;
-  ranking_category: string;
-  ranking: string;
-  subcategory_type: string;
-  subcategory_type_label: string;
-  distance: string;
-  distance_string: string | null;
-  bearing: string;
-  rating: string;
-  is_closed: boolean;
-  is_long_closed: boolean;
-  price_level: string;
-  price: string;
+  awards?: {
+    award_type: string;
+    year: string;
+    images: {
+      small: string;
+      large: string;
+    };
+    categories: string[];
+    display_name: "Certificate of Excellence 2013";
+  }[];
+  preferred_map_engine?: string;
+  autobroaden_type?: string;
+  autobroaden_label?: string;
+  raw_ranking?: string;
+  ranking_geo?: string;
+  ranking_geo_id?: string;
+  ranking_position?: string;
+  ranking_denominator?: string;
+  ranking_category?: string;
+  ranking?: string;
+  subcategory_type?: string;
+  subcategory_type_label?: string;
+  distance?: string;
+  distance_string?: string | null;
+  bearing?: string;
+  rating?: string;
+  is_closed?: boolean;
+  is_long_closed?: boolean;
+  price_level?: string;
+  price?: string;
   hotel_class: string;
   business_listings: {
     desktop_contacts: string[];
     mobile_contacts: string[];
   };
-  special_offers: {
+  special_offers?: {
     desktop: string[];
     mobile: string[];
   };
-  listing_key: string;
+  listing_key?: string;
 };
 
 export type SearchState = {
   places: Place[];
-  coordinates: Coords;
-  bounds: Bounds;
+  coordinates?: Coords;
+  bounds?: Bounds;
   zoom: number;
 };

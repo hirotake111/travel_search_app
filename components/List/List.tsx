@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Divider, Flex } from "@chakra-ui/react";
 import { useAppSelector } from "../../redux/store";
 
 const images = {
@@ -17,14 +17,31 @@ export default function List() {
   return (
     <>
       {places.map((place, i) => (
-        <Flex key={i}>
-          <Image
-            src={place.photo?.images?.large.url || images.hotel}
-            width="150px"
-            height="150px"
-          />
-          <Box>description</Box>
-        </Flex>
+        <Box key={i} p="0 16px">
+          {i > 0 && <Divider />}
+          <Flex p="16px">
+            <Box w="300px" h="200px" borderRadius="16px" overflow="hidden">
+              <Image
+                src={place.photo?.images?.large.url || images.hotel}
+                width="300px"
+                height="200px"
+              />
+            </Box>
+            <Box>
+              <p>{place.name || "N/A"}</p>
+              <p>{place.price || "-"}</p>
+              <p>{place.price_level || "-"}</p>
+              <p>
+                {place.rating ? `Customer's Rate: ${place.rating}/5.0` : "-"}
+              </p>
+              {place.awards?.length !== 0 &&
+                place.awards?.map((award) => (
+                  <p style={{ color: "red" }}>{award.display_name}</p>
+                ))}
+              <p>{place.ranking}</p>
+            </Box>
+          </Flex>
+        </Box>
       ))}
     </>
   );
