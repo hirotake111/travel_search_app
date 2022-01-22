@@ -14,12 +14,21 @@ const Home: NextPage = () => {
         height: "100vh",
       }}
     >
-      <Header />
-      <Flex h="100%">
+      <Box h={{ base: "128px", sm: "128px", md: "64px", lg: "64px" }} w="100%">
+        <Header />
+      </Box>
+      <Flex
+        h={{
+          base: "calc(100vh - 128px)",
+          sm: "calc(100vh - 128px)",
+          md: "calc(100vh - 64px)",
+          lg: "calc(100vh - 64px)",
+        }}
+      >
         <Box flex={2}>
           <LeftColumn />
         </Box>
-        <Box flex={1.5} display={{ base: "none", sm: "none", md: "block" }}>
+        <Box flex={1.2} display={{ base: "none", sm: "none", md: "block" }}>
           <RightColumn />
         </Box>
       </Flex>

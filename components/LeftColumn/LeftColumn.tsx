@@ -6,7 +6,7 @@ export default function LeftColumn() {
   return (
     <Flex direction="column" h="100%">
       <Filter />
-      <Box overflow="scroll">
+      <Box overflowY="scroll">
         <List />
       </Box>
     </Flex>

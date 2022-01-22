@@ -40,7 +40,7 @@ export const searchSlice = createSlice({
   reducers: {
     // Use the PayloadAction type to declare the contents of `action.payload`
     updatePlace: (state, action: PayloadAction<Place[]>) => {
-      state.places = [...action.payload];
+      state.places = [...action.payload.filter((place) => place.name)];
     },
     updateCoordinates: (state, action: PayloadAction<Coords>) => {
       state.coordinates = action.payload;

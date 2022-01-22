@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Box, Divider, Flex } from "@chakra-ui/react";
+import { Box, Divider, Flex, Text } from "@chakra-ui/react";
 import { useAppSelector } from "../../redux/store";
 
 const images = {
@@ -17,28 +17,69 @@ export default function List() {
   return (
     <>
       {places.map((place, i) => (
-        <Box key={i} p="0 16px">
+        <Box key={i} p={{ base: "0 8px", lg: "0 16px" }}>
           {i > 0 && <Divider />}
-          <Flex p="16px">
-            <Box w="300px" h="200px" borderRadius="16px" overflow="hidden">
+          <Flex p={{ base: "8px", lg: "16px" }}>
+            {/** image container */}
+            <Box
+              borderRadius={{ base: "8px", lg: "16px" }}
+              minW={{ base: "75px", sm: "150px", md: "225px", lg: "300px" }}
+              h={{ base: "50px", sm: "100px", md: "150px", lg: "200px" }}
+              overflow="hidden"
+              objectFit="cover"
+            >
               <Image
                 src={place.photo?.images?.large.url || images.hotel}
                 width="300px"
                 height="200px"
+                layout="responsive"
               />
             </Box>
-            <Box>
-              <p>{place.name || "N/A"}</p>
-              <p>{place.price || "-"}</p>
-              <p>{place.price_level || "-"}</p>
-              <p>
-                {place.rating ? `Customer's Rate: ${place.rating}/5.0` : "-"}
-              </p>
-              {place.awards?.length !== 0 &&
-                place.awards?.map((award) => (
-                  <p style={{ color: "red" }}>{award.display_name}</p>
-                ))}
-              <p>{place.ranking}</p>
+
+            {/** details container */}
+            <Box
+              // pt={{ base: "8px", sm: "8px", md: "8px", lg: "16px" }}
+              pl={{ base: "8px", sm: "8px", md: "8px", lg: "16px" }}
+              w="100%"
+            >
+              <Flex direction="column" justifyContent="space-between" h="100%">
+                <Box>
+                  <Text fontSize={{ md: "md", lg: "lg" }}>{place.name}</Text>
+                  <Divider m={{ lg: "15px 0 " }} w="50%" />
+                  <Box>
+                    {place.awards?.length !== 0 &&
+                      place.awards?.slice(0, 3).map((award) => (
+                        <>
+                          <Text
+                            as="span"
+                            m="2px"
+                            p="3px 5px"
+                            borderRadius="8px"
+                            minW="0px"
+                            fontSize={{ base: "10px", lg: "xs" }}
+                            color={"white"}
+                            bgColor={"gray.600"}
+                            whiteSpace={"pre-wrap"}
+                          >
+                            {award.display_name}
+                          </Text>
+                          <br />
+                        </>
+                      ))}
+                  </Box>
+                  <Text
+                    fontSize={"10px"}
+                    color={"gray.400"}
+                    mt={{ base: "5px", lg: "10px" }}
+                  >
+                    {place.ranking}
+                  </Text>
+                </Box>
+                <Flex justifyContent={"space-between"} alignItems="center">
+                  <Text>{place.rating ? `⭐️ ${place.rating}/5.0` : null}</Text>
+                  <Text fontSize="xl">{place.price || "-"}</Text>
+                </Flex>{" "}
+              </Flex>
             </Box>
           </Flex>
         </Box>
