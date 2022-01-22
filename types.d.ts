@@ -88,6 +88,7 @@ export type Place = {
     mobile: string[];
   };
   listing_key?: string;
+  web_url?: string;
 };
 
 export type SearchState = {

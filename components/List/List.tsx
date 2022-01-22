@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Box, Divider, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Text, Link } from "@chakra-ui/react";
 import { useAppSelector } from "../../redux/store";
 
 const images = {
@@ -19,7 +19,7 @@ export default function List() {
       {places.map((place, i) => (
         <Box key={i} p={{ base: "0 8px", lg: "0 16px" }}>
           {i > 0 && <Divider />}
-          <Flex p={{ base: "8px", lg: "16px" }}>
+          <Flex p={{ base: "8px", lg: "16px" }} _hover={{ cursor: "pointer" }}>
             {/** image container */}
             <Box
               borderRadius={{ base: "8px", lg: "16px" }}
@@ -38,7 +38,6 @@ export default function List() {
 
             {/** details container */}
             <Box
-              // pt={{ base: "8px", sm: "8px", md: "8px", lg: "16px" }}
               pl={{ base: "8px", sm: "8px", md: "8px", lg: "16px" }}
               w="100%"
             >
@@ -75,10 +74,24 @@ export default function List() {
                     {place.ranking}
                   </Text>
                 </Box>
-                <Flex justifyContent={"space-between"} alignItems="center">
-                  <Text>{place.rating ? `⭐️ ${place.rating}/5.0` : null}</Text>
-                  <Text fontSize="xl">{place.price || "-"}</Text>
-                </Flex>{" "}
+                <Box>
+                  {place.web_url && (
+                    <Button size="xs" bgColor="gray.700">
+                      <Link
+                        href={place.web_url || "http://example.com"}
+                        isExternal
+                      >
+                        GO TO WEBSITE
+                      </Link>
+                    </Button>
+                  )}
+                  <Flex justifyContent={"space-between"} alignItems="center">
+                    <Text>
+                      {place.rating ? `⭐️ ${place.rating}/5.0` : null}
+                    </Text>
+                    <Text fontSize="xl">{place.price || "-"}</Text>
+                  </Flex>
+                </Box>
               </Flex>
             </Box>
           </Flex>
