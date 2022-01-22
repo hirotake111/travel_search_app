@@ -24,9 +24,9 @@ export default function RightColumn() {
           setCoordinates({ ...e.center });
           setBoundaries({ ...e.bounds });
         }}
-        onChildClick={(e) => {
-          console.log("child clicked!", e);
-        }}
+        // onChildClick={(e) => {
+        //   console.log("child clicked!", e);
+        // }}
       >
         {places.map((p, i) => {
           return (
@@ -48,31 +48,33 @@ export default function RightColumn() {
 
 const MapChild = (props: { [key: string]: any }) => {
   return (
-    <div {...props}>
-      <Box position="absolute">
-        <Flex justifyContent="center" alignItems="center">
-          <Box
-            position="relative"
-            // display="flex"
-            p="5px"
-            minW="80px"
-            maxW="100px"
-            borderRadius="15px"
-            whiteSpace="nowrap"
-            textOverflow="ellipsis"
-            overflow="hidden"
-            bgColor="white"
-            border="1px solid #eeeeee"
-            boxShadow="2px 2px 5.3px rgba(0, 0, 0, 0.028),
+    <Box
+      {...props}
+      // position="absolute"
+      // display="flex"
+      p="5px"
+      minW="80px"
+      maxW="100px"
+      borderRadius="15px"
+      whiteSpace="nowrap"
+      textOverflow="ellipsis"
+      overflow="hidden"
+      bgColor="white"
+      border="1px solid #eeeeee"
+      boxShadow="2px 2px 5.3px rgba(0, 0, 0, 0.028),
             6.7px 6.7px 17.9px rgba(0, 0, 0, 0.042),
             30px 30px 80px rgba(0, 0, 0, 0.07)"
-            cursor="pointer"
-            fontWeight="500"
-          >
-            {props.children}
-          </Box>
-        </Flex>
-      </Box>
-    </div>
+      cursor="pointer"
+      fontWeight="500"
+      _hover={{
+        fontSize: "12px",
+        minWidth: "85px",
+        maxWidth: "105px",
+      }}
+      transition="0.2s"
+      onClick={() => console.log("boon!")}
+    >
+      {props.children}
+    </Box>
   );
 };
