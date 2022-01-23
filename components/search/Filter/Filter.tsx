@@ -38,24 +38,6 @@ export default function Filter() {
             </RadioGroup>
           </Box>
         </AccordionPanel>
-        {/* <AccordionPanel pb={4}>
-          <Box padding="0 16px" display="flex">
-            <span style={{ paddingRight: "12px" }}>Rating:</span>
-            <Slider
-              defaultValue={0}
-              min={0}
-              max={5}
-              step={1}
-              maxWidth={{ sm: "240px", md: "100%" }}
-            >
-              <SliderTrack bg="red.100">
-                <Box position="relative" right={10} />
-                <SliderFilledTrack bg="tomato" />
-              </SliderTrack>
-              <SliderThumb boxSize={6} />
-            </Slider>{" "}
-          </Box>
-        </AccordionPanel> */}
       </AccordionItem>
     </Accordion>
   );

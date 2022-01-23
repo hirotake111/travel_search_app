@@ -28,5 +28,4 @@ export default async function getHotel(
   const { data } = await axios.request(options);
   // const { data } = await GetMockResponse(); // mock data
   res.status(200).json({ result: data.data });
-  // res.status(200).send({ result: req.query });
 }

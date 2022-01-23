@@ -1,6 +1,5 @@
 import { Box, Flex, Spinner } from "@chakra-ui/react";
 import GoogleMapReact from "google-map-react";
-// import { useGoogleMaps } from "../../hooks/googleMaps";
 
 import { useCoordinates } from "../../hooks/map";
 import { useSelectedPlace } from "../../hooks/selectedPlace";
@@ -22,7 +21,6 @@ export default function RightColumn() {
           bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_APIKEY || "" }}
           center={coordinates}
           zoom={zoom}
-          // options={}
           onChange={(e) => {
             console.log("onChange");
             // set coordinates and boundaries

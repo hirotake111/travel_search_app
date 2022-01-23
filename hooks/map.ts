@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Coords, Bounds } from "google-map-react";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import {
