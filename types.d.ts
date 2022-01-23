@@ -91,6 +91,7 @@ export type Place = {
   web_url?: string;
 };
 
+export type SearchType = "hotels" | "restaurants" | "attractions";
 export type SearchState = {
   places: Place[];
   coordinates?: Coords;
@@ -98,5 +99,5 @@ export type SearchState = {
   zoom: number;
   selectedPlace?: string;
   hoveredPlace?: string;
-  googleMapsLoaded: boolean;
+  searchType: SearchType;
 };

@@ -7,13 +7,13 @@ type Data = {
   result: any;
 };
 
-export default async function getHotel(
+export default async function getRestaurants(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
   var options: AxiosRequestConfig = {
     method: "GET",
-    url: "https://travel-advisor.p.rapidapi.com/hotels/list-in-boundary",
+    url: "https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary",
     params: { ...req.query },
     headers: {
       "x-rapidapi-host": "travel-advisor.p.rapidapi.com",
@@ -25,8 +25,8 @@ export default async function getHotel(
     res.status(500).send({ result: e });
   }
   // perform network call to RapiAPI
-  const { data } = await axios.request(options);
-  // const { data } = await GetMockResponse(); // mock data
+  // const { data } = await axios.request(options);
+  const { data } = await GetMockResponse(); // mock data
   res.status(200).json({ result: data.data });
   // res.status(200).send({ result: req.query });
 }

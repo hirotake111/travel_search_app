@@ -41,7 +41,7 @@ export default function List() {
           {Array(5)
             .fill(0)
             .map((_, i) => (
-              <Box>
+              <Box key={i}>
                 {i > 0 && <Divider />}
                 <DummyItem />
               </Box>
@@ -67,6 +67,7 @@ const Item = ({ place }: { place: Place }) => {
           src={place.photo?.images?.large.url || images.hotel}
           width="300px"
           height="200px"
+          alt="image"
           layout="responsive"
         />
       </Box>

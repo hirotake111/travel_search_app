@@ -1,10 +1,9 @@
 import axios from "axios";
 import { Bounds } from "google-map-react";
-import { Place } from "../types";
+import { Place, SearchType } from "../types";
 
 const API_URL = "/api/search";
 
-type SearchType = "hotels" | "restaurants" | "attractions";
 export const getData = async (
   type: SearchType,
   bounds: Bounds

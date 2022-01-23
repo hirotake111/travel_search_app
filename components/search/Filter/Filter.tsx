@@ -6,22 +6,17 @@ import {
   AccordionPanel,
   AccordionIcon,
   Stack,
+  RadioGroup,
+  Radio,
 } from "@chakra-ui/react";
 
-import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
-
-import {
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-} from "@chakra-ui/react";
-
-import { useState } from "react";
+import { useSearchType } from "../../../hooks/searchType";
 
 export default function Filter() {
+  const { searchType, setSearchType } = useSearchType();
+
   return (
-    <Accordion allowToggle>
+    <Accordion allowToggle defaultIndex={0}>
       <AccordionItem>
         <h2>
           <AccordionButton>
@@ -34,23 +29,16 @@ export default function Filter() {
         <AccordionPanel pb={4}>
           <Box paddingLeft="16px" display="flex">
             <span style={{ paddingRight: "12px" }}>Facility:</span>
-            <CheckboxGroup
-              colorScheme="green"
-              defaultValue={["hotel", "restaurant", "other"]}
-            >
-              <Stack
-                spacing={[1, 5]}
-                direction={["column", "row"]}
-                maxWidth={{ sm: "240px", md: "100%" }}
-              >
-                <Checkbox value="hotel">Hotel</Checkbox>
-                <Checkbox value="restaurant">Restaurant</Checkbox>
-                <Checkbox value="other">Other</Checkbox>
+            <RadioGroup value={searchType} onChange={setSearchType}>
+              <Stack direction="row">
+                <Radio value="hotels">Hotels</Radio>
+                <Radio value="restaurants">Restaurants</Radio>
+                <Radio value="attractions">Attractions</Radio>
               </Stack>
-            </CheckboxGroup>{" "}
+            </RadioGroup>
           </Box>
         </AccordionPanel>
-        <AccordionPanel pb={4}>
+        {/* <AccordionPanel pb={4}>
           <Box padding="0 16px" display="flex">
             <span style={{ paddingRight: "12px" }}>Rating:</span>
             <Slider
@@ -67,7 +55,7 @@ export default function Filter() {
               <SliderThumb boxSize={6} />
             </Slider>{" "}
           </Box>
-        </AccordionPanel>
+        </AccordionPanel> */}
       </AccordionItem>
     </Accordion>
   );

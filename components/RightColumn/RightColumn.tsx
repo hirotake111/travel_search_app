@@ -1,6 +1,6 @@
 import { Box, Flex, Spinner } from "@chakra-ui/react";
 import GoogleMapReact from "google-map-react";
-import { useGoogleMaps } from "../../hooks/googleMaps";
+// import { useGoogleMaps } from "../../hooks/googleMaps";
 
 import { useCoordinates } from "../../hooks/map";
 import { useSelectedPlace } from "../../hooks/selectedPlace";
@@ -10,7 +10,6 @@ export default function RightColumn() {
   const { coordinates, setCoordinates, setBoundaries, zoom } =
     useCoordinates(true);
   const { setSelectedPlace } = useSelectedPlace();
-  const { setGoogleMapsLoadedStatus, googleMapsLoaded } = useGoogleMaps();
 
   const { places, hoveredPlace, selectedPlace } = useAppSelector(
     (state) => state.search
@@ -30,7 +29,6 @@ export default function RightColumn() {
             setCoordinates({ ...e.center });
             setBoundaries({ ...e.bounds });
           }}
-          onGoogleApiLoaded={setGoogleMapsLoadedStatus}
         >
           {places.map((p, i) => {
             return (

@@ -11,12 +11,8 @@ import { Place } from "../types";
 import { getData } from "../utils/api";
 
 export const useCoordinates = (getCrrentPosition: boolean) => {
-  // const [coordinates, setCoordinates] = useLocalStorage<Coords>("coords");
-  // const [coordinates, setCoordinates] = useState<Coords>();
-  // const [boundaries, setBoundaries] = useState<Bounds>(defaultBounds);
-  // const [zoom, setZoom] = useState(11);
   const dispatch = useAppDispatch();
-  const { coordinates, bounds, zoom, places } = useAppSelector(
+  const { coordinates, bounds, zoom, places, searchType } = useAppSelector(
     (state) => state.search
   );
 
@@ -38,7 +34,7 @@ export const useCoordinates = (getCrrentPosition: boolean) => {
     if (bounds) {
       // first remove all data
       dispatch(updatePlace([]));
-      getData("hotels", bounds).then((places) => {
+      getData(searchType, bounds).then((places) => {
         dispatch(updatePlace(places));
       });
     }

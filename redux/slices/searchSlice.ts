@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { SearchState, Place } from "../../types";
+import { SearchState, Place, SearchType } from "../../types";
 import { Bounds, Coords } from "google-map-react";
 
 const initialState: SearchState = {
@@ -9,7 +9,7 @@ const initialState: SearchState = {
   zoom: 11,
   selectedPlace: undefined,
   hoveredPlace: undefined,
-  googleMapsLoaded: false,
+  searchType: "hotels",
 };
 
 export const searchSlice = createSlice({
@@ -35,8 +35,8 @@ export const searchSlice = createSlice({
     updateHoveredPlace: (state, action: PayloadAction<string>) => {
       state.hoveredPlace = action.payload;
     },
-    updateGoogleMapsLoaded: (state) => {
-      state.googleMapsLoaded = true;
+    updateSearchType: (state, action: PayloadAction<SearchType>) => {
+      state.searchType = action.payload;
     },
   },
 });
@@ -48,6 +48,6 @@ export const {
   updateZoom,
   updateSelectedPlace,
   updateHoveredPlace,
-  updateGoogleMapsLoaded,
+  updateSearchType,
 } = searchSlice.actions;
 export const searchReducer = searchSlice.reducer;
