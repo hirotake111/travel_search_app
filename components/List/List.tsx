@@ -5,6 +5,8 @@ import { Place } from "../../types";
 import { usePlaceRefs } from "../../hooks/placeRefs";
 import { useItemHover } from "../../hooks/itemHover";
 
+import styles from "./List.module.css";
+
 const images = {
   hotel:
     "https://images.unsplash.com/photo-1629140727571-9b5c6f6267b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzN8fGhvdGVsfGVufDB8fDB8fA==&auto=format&fit=crop&w=1200&q=60",
@@ -21,17 +23,31 @@ export default function List() {
 
   return (
     <>
-      {places.map((place, i) => (
-        <Box
-          key={i}
-          ref={refs[i]}
-          p={{ base: "0 8px", lg: "0 16px" }}
-          onMouseEnter={() => setHoveredPlace(place.name)}
-        >
-          {i > 0 && <Divider />}
-          <Item place={place} />
+      {places.length !== 0 ? (
+        places.map((place, i) => (
+          <Box
+            key={i}
+            ref={refs[i]}
+            p={{ base: "0 8px", lg: "0 16px" }}
+            onMouseEnter={() => setHoveredPlace(place.name)}
+          >
+            {i > 0 && <Divider />}
+            <Item place={place} />
+            {/* <DummyItem /> */}
+          </Box>
+        ))
+      ) : (
+        <Box>
+          {Array(5)
+            .fill(0)
+            .map((_, i) => (
+              <Box>
+                {i > 0 && <Divider />}
+                <DummyItem />
+              </Box>
+            ))}
         </Box>
-      ))}
+      )}
     </>
   );
 }
@@ -101,6 +117,76 @@ const Item = ({ place }: { place: Place }) => {
             <Flex justifyContent={"space-between"} alignItems="center">
               <Text>{place.rating ? `⭐️ ${place.rating}/5.0` : null}</Text>
               <Text fontSize="xl">{place.price || "-"}</Text>
+            </Flex>
+          </Box>
+        </Flex>
+      </Box>
+    </Flex>
+  );
+};
+
+const DummyItem = () => {
+  return (
+    <Flex p={{ base: "8px", lg: "16px" }} cursor="pointer">
+      {/** image container */}
+      <Box
+        className={styles.emptyFields}
+        borderRadius={{ base: "8px", lg: "16px" }}
+        minW={{ base: "75px", sm: "150px", md: "225px", lg: "300px" }}
+        h={{ base: "50px", sm: "100px", md: "150px", lg: "200px" }}
+        overflow="hidden"
+        objectFit="cover"
+      ></Box>
+
+      {/** details container */}
+      <Box pl={{ base: "8px", sm: "8px", md: "8px", lg: "16px" }} w="100%">
+        <Flex direction="column" justifyContent="space-between" h="100%">
+          <Box>
+            <Text
+              className={styles.emptyFields}
+              borderRadius="10px"
+              w="50%"
+              h="27px"
+              fontSize={{ md: "md", lg: "lg" }}
+            ></Text>
+            <Divider m={{ lg: "15px 0 " }} w="50%" />
+            <Box>
+              <Text
+                className={styles.emptyFields}
+                m="2px"
+                p="3px 5px"
+                borderRadius="8px"
+                w="30%"
+                h="24px"
+                fontSize={{ base: "10px", lg: "xs" }}
+                color={"white"}
+                whiteSpace={"pre-wrap"}
+              ></Text>
+            </Box>
+            <Text
+              fontSize={"10px"}
+              className={styles.emptyFields}
+              h="15px"
+              w="15%"
+              borderRadius="5px"
+              mt={{ base: "5px", lg: "10px" }}
+            ></Text>
+          </Box>
+          <Box>
+            <Flex justifyContent={"space-between"} alignItems="center">
+              <Text
+                className={styles.emptyFields}
+                h="24px"
+                w="15%"
+                borderRadius="10px"
+              ></Text>
+              <Text
+                className={styles.emptyFields}
+                fontSize="xl"
+                h="30px"
+                w="15%"
+                borderRadius="10px"
+              ></Text>
             </Flex>
           </Box>
         </Flex>

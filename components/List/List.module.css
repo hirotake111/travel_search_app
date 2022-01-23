@@ -1,0 +1,13 @@
+.emptyFields {
+  background-color: #dddddd;
+  animation: fade 0.5s linear infinite alternate;
+}
+
+@keyframes fade {
+  0% {
+    background-color: #bbbbbb;
+  }
+  100% {
+    background-color: #cccccc;
+  }
+}

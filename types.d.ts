@@ -78,8 +78,8 @@ export type Place = {
   is_long_closed?: boolean;
   price_level?: string;
   price?: string;
-  hotel_class: string;
-  business_listings: {
+  hotel_class?: string;
+  business_listings?: {
     desktop_contacts: string[];
     mobile_contacts: string[];
   };
