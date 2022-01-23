@@ -1,5 +1,6 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Spinner } from "@chakra-ui/react";
 import GoogleMapReact from "google-map-react";
+import { useGoogleMaps } from "../../hooks/googleMaps";
 
 import { useCoordinates } from "../../hooks/map";
 import { useSelectedPlace } from "../../hooks/selectedPlace";
@@ -9,6 +10,7 @@ export default function RightColumn() {
   const { coordinates, setCoordinates, setBoundaries, zoom } =
     useCoordinates(true);
   const { setSelectedPlace } = useSelectedPlace();
+  const { setGoogleMapsLoadedStatus, googleMapsLoaded } = useGoogleMaps();
 
   const { places, hoveredPlace, selectedPlace } = useAppSelector(
     (state) => state.search
@@ -16,37 +18,41 @@ export default function RightColumn() {
 
   return (
     <Box h="100%" bgColor="ThreeDDarkShadow">
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_APIKEY || "" }}
-        // defaultCenter={coordinates}
-        center={coordinates}
-        zoom={zoom}
-        // options={}
-        onChange={(e) => {
-          console.log("onChange");
-          // set coordinates and boundaries
-          setCoordinates({ ...e.center });
-          setBoundaries({ ...e.bounds });
-        }}
-      >
-        {places.map((p, i) => {
-          return (
-            <MapChild
-              key={i}
-              id={p.name}
-              lat={Number(p.latitude)}
-              lng={Number(p.longitude)}
-              onClick={() => setSelectedPlace(p.name)}
-              selected={p.name == hoveredPlace || p.name === selectedPlace}
-            >
-              {p.name}
-            </MapChild>
-          );
-        })}
-      </GoogleMapReact>
+      {coordinates ? (
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_APIKEY || "" }}
+          center={coordinates}
+          zoom={zoom}
+          // options={}
+          onChange={(e) => {
+            console.log("onChange");
+            // set coordinates and boundaries
+            setCoordinates({ ...e.center });
+            setBoundaries({ ...e.bounds });
+          }}
+          onGoogleApiLoaded={setGoogleMapsLoadedStatus}
+        >
+          {places.map((p, i) => {
+            return (
+              <MapChild
+                key={i}
+                id={p.name}
+                lat={Number(p.latitude)}
+                lng={Number(p.longitude)}
+                onClick={() => setSelectedPlace(p.name)}
+                selected={p.name == hoveredPlace || p.name === selectedPlace}
+              >
+                {p.name}
+              </MapChild>
+            );
+          })}
+        </GoogleMapReact>
+      ) : (
+        <Flex w="100%" h="100%" justifyContent="center" alignItems="center">
+          <Spinner size="xl" />
+        </Flex>
+      )}
     </Box>
-    // <div className={styles.rightColumn}>
-    // </div>
   );
 }
 

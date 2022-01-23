@@ -1,4 +1,6 @@
-export const GetMockResponse = async () => ({
+import { Place } from "../types";
+
+const mockData = {
   data: {
     data: [
       {
@@ -3837,4 +3839,13 @@ export const GetMockResponse = async () => ({
     url: "/api/search?city=new%20york",
   },
   request: {},
-});
+};
+
+export const GetMockResponse = async (): Promise<typeof mockData> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(mockData);
+    }, 3000);
+  });
+  // return mockData;
+};

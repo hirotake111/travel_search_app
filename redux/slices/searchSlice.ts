@@ -9,6 +9,7 @@ const initialState: SearchState = {
   zoom: 11,
   selectedPlace: undefined,
   hoveredPlace: undefined,
+  googleMapsLoaded: false,
 };
 
 export const searchSlice = createSlice({
@@ -34,6 +35,9 @@ export const searchSlice = createSlice({
     updateHoveredPlace: (state, action: PayloadAction<string>) => {
       state.hoveredPlace = action.payload;
     },
+    updateGoogleMapsLoaded: (state) => {
+      state.googleMapsLoaded = true;
+    },
   },
 });
 
@@ -44,5 +48,6 @@ export const {
   updateZoom,
   updateSelectedPlace,
   updateHoveredPlace,
+  updateGoogleMapsLoaded,
 } = searchSlice.actions;
 export const searchReducer = searchSlice.reducer;

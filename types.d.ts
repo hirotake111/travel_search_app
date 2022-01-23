@@ -98,4 +98,5 @@ export type SearchState = {
   zoom: number;
   selectedPlace?: string;
   hoveredPlace?: string;
+  googleMapsLoaded: boolean;
 };
