@@ -10,7 +10,9 @@ export default function RightColumn() {
     useCoordinates(true);
   const { setSelectedPlace } = useSelectedPlace();
 
-  const { places } = useAppSelector((state) => state.search);
+  const { places, hoveredPlace, selectedPlace } = useAppSelector(
+    (state) => state.search
+  );
 
   return (
     <Box h="100%" bgColor="ThreeDDarkShadow">
@@ -35,6 +37,7 @@ export default function RightColumn() {
               lat={Number(p.latitude)}
               lng={Number(p.longitude)}
               onClick={() => setSelectedPlace(p.name)}
+              selected={p.name == hoveredPlace || p.name === selectedPlace}
             >
               {p.name}
             </MapChild>
@@ -51,14 +54,13 @@ interface Props {
   [key: string]: any;
   id: string;
   onClick: () => void;
+  selected: boolean;
 }
 
 const MapChild = (props: Props) => {
   return (
     <Box
       {...props}
-      // position="absolute"
-      // display="flex"
       p="5px"
       minW="80px"
       maxW="100px"
@@ -66,7 +68,8 @@ const MapChild = (props: Props) => {
       whiteSpace="nowrap"
       textOverflow="ellipsis"
       overflow="hidden"
-      bgColor="white"
+      bgColor={props.selected ? "black" : "white"}
+      color={props.selected ? "white" : "black"}
       border="1px solid #eeeeee"
       boxShadow="2px 2px 5.3px rgba(0, 0, 0, 0.028),
             6.7px 6.7px 17.9px rgba(0, 0, 0, 0.042),

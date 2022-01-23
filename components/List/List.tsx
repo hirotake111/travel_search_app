@@ -3,6 +3,7 @@ import { Box, Button, Divider, Flex, Text, Link } from "@chakra-ui/react";
 import { useAppSelector } from "../../redux/store";
 import { Place } from "../../types";
 import { usePlaceRefs } from "../../hooks/placeRefs";
+import { useItemHover } from "../../hooks/itemHover";
 
 const images = {
   hotel:
@@ -16,11 +17,17 @@ const images = {
 export default function List() {
   const { places } = useAppSelector((state) => state.search);
   const { refs } = usePlaceRefs();
+  const { setHoveredPlace } = useItemHover();
 
   return (
     <>
       {places.map((place, i) => (
-        <Box key={i} ref={refs[i]} p={{ base: "0 8px", lg: "0 16px" }}>
+        <Box
+          key={i}
+          ref={refs[i]}
+          p={{ base: "0 8px", lg: "0 16px" }}
+          onMouseEnter={() => setHoveredPlace(place.name)}
+        >
           {i > 0 && <Divider />}
           <Item place={place} />
         </Box>
@@ -29,11 +36,7 @@ export default function List() {
   );
 }
 
-interface Props {
-  place: Place;
-}
-
-const Item = ({ place }: Props) => {
+const Item = ({ place }: { place: Place }) => {
   return (
     <Flex p={{ base: "8px", lg: "16px" }} cursor="pointer">
       {/** image container */}
