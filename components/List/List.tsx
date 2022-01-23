@@ -2,8 +2,7 @@ import Image from "next/image";
 import { Box, Button, Divider, Flex, Text, Link } from "@chakra-ui/react";
 import { useAppSelector } from "../../redux/store";
 import { Place } from "../../types";
-import { useSelectedPlace } from "../../hooks/selectedPlace";
-import { createRef, RefObject, useEffect, useState } from "react";
+import { usePlaceRefs } from "../../hooks/placeRefs";
 
 const images = {
   hotel:
@@ -16,23 +15,14 @@ const images = {
 
 export default function List() {
   const { places } = useAppSelector((state) => state.search);
-  const { selectedPlace } = useSelectedPlace();
-  const [elRefs, setElRefs] = useState<any>([]);
-
-  useEffect(() => {
-    setElRefs(places.map(() => createRef()));
-  }, [places]);
+  const { refs } = usePlaceRefs();
 
   return (
     <>
       {places.map((place, i) => (
-        <Box key={i} ref={elRefs[i]} p={{ base: "0 8px", lg: "0 16px" }}>
+        <Box key={i} ref={refs[i]} p={{ base: "0 8px", lg: "0 16px" }}>
           {i > 0 && <Divider />}
-          <Item
-            refProp={elRefs[i]}
-            place={place}
-            selected={selectedPlace === place.name}
-          />
+          <Item place={place} />
         </Box>
       ))}
     </>
@@ -41,18 +31,9 @@ export default function List() {
 
 interface Props {
   place: Place;
-  selected: boolean;
-  refProp: RefObject<HTMLDivElement>;
 }
 
-const Item = ({ place, selected, refProp }: Props) => {
-  useEffect(() => {
-    if (selected) {
-      // scroll window and highlight item
-      refProp?.current?.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [selected]);
-
+const Item = ({ place }: Props) => {
   return (
     <Flex p={{ base: "8px", lg: "16px" }} cursor="pointer">
       {/** image container */}
