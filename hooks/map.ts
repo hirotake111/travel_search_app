@@ -16,13 +16,13 @@ export const useCoordinates = (getCrrentPosition: boolean) => {
     (state) => state.search
   );
 
+  // if getCrrentLocation is true, then ask user to get current position
   useEffect(() => {
-    // if getCrrentLocation is true, then ask user to get current position
     if (getCrrentPosition) {
-      console.log("will ask geolocation");
+      // console.log("will ask geolocation");
       navigator.geolocation.getCurrentPosition(
         ({ coords: { latitude, longitude } }) => {
-          console.log("got geolocation data");
+          // console.log("got geolocation data");
           setCoordinates({ lat: latitude, lng: longitude });
         }
       );

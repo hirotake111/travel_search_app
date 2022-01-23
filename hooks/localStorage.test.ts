@@ -6,9 +6,9 @@ beforeEach(() => {
   window.localStorage.clear();
 });
 
-it("should return null as default value", () => {
+it("should return undefined as default value", () => {
   const { result } = renderHook(() => useLocalStorage("key"));
-  expect(result.current[0]).toBe(null);
+  expect(result.current[0]).toBe(undefined);
 });
 
 it("should return value after setting value", () => {
