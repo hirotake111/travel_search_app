@@ -2,7 +2,7 @@ import { Bounds, Coords } from "google-map-react";
 
 export type Place = {
   location_id?: string;
-  name?: string;
+  name: string;
   latitude: string;
   longitude: string;
   num_reviews?: string;
@@ -96,4 +96,6 @@ export type SearchState = {
   coordinates?: Coords;
   bounds?: Bounds;
   zoom: number;
+  selectedPlace?: string;
+  hoveredPlace?: string;
 };

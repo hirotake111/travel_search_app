@@ -2,11 +2,13 @@ import { Box, Flex } from "@chakra-ui/react";
 import GoogleMapReact from "google-map-react";
 
 import { useCoordinates } from "../../hooks/map";
+import { useSelectedPlace } from "../../hooks/selectedPlace";
 import { useAppSelector } from "../../redux/store";
 
 export default function RightColumn() {
   const { coordinates, setCoordinates, setBoundaries, zoom } =
     useCoordinates(true);
+  const { setSelectedPlace } = useSelectedPlace();
 
   const { places } = useAppSelector((state) => state.search);
 
@@ -24,16 +26,15 @@ export default function RightColumn() {
           setCoordinates({ ...e.center });
           setBoundaries({ ...e.bounds });
         }}
-        // onChildClick={(e) => {
-        //   console.log("child clicked!", e);
-        // }}
       >
         {places.map((p, i) => {
           return (
             <MapChild
               key={i}
+              id={p.name}
               lat={Number(p.latitude)}
               lng={Number(p.longitude)}
+              onClick={() => setSelectedPlace(p.name)}
             >
               {p.name}
             </MapChild>
@@ -46,7 +47,13 @@ export default function RightColumn() {
   );
 }
 
-const MapChild = (props: { [key: string]: any }) => {
+interface Props {
+  [key: string]: any;
+  id: string;
+  onClick: () => void;
+}
+
+const MapChild = (props: Props) => {
   return (
     <Box
       {...props}
@@ -71,8 +78,8 @@ const MapChild = (props: { [key: string]: any }) => {
         minWidth: "85px",
         maxWidth: "105px",
       }}
-      transition="0.2s"
-      onClick={() => console.log("boon!")}
+      transition="0.1s"
+      onClick={props.onClick}
     >
       {props.children}
     </Box>
