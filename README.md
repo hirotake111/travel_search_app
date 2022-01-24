@@ -16,8 +16,8 @@ Create .env.local file and put these environment variables below:
 
 - [React (TypeScript)](https://reactjs.org/)
 
-- [Next.js](https://nextjs.org/)
-
 - [Chakra UI](https://chakra-ui.com/)
 
 - [React Google Maps API](https://react-google-maps-api-docs.netlify.app/)
+
+- [RapidAPI](https://rapidapi.com/)

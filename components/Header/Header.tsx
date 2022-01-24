@@ -2,7 +2,7 @@ import { Flex, Text } from "@chakra-ui/react";
 import Link from "next/link";
 
 import Searchbar from "../search/Searchbar/Searchbar";
-import ButtonList from "../ButtonList/ButtonLIst";
+import ButtonList from "../ButtonList/ButtonList";
 
 export default function Header() {
   return (
