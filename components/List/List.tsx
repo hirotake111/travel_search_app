@@ -30,8 +30,9 @@ export default function List() {
             ref={refs[i]}
             p={{ base: "0 8px", lg: "0 16px" }}
             onMouseEnter={() => setHoveredPlace(place.name)}
+            aria-label="item"
           >
-            {i > 0 && <Divider />}
+            {i > 0 && <Divider aria-label="divider" />}
             <Item place={place} />
             {/* <DummyItem /> */}
           </Box>
@@ -41,7 +42,7 @@ export default function List() {
           {Array(5)
             .fill(0)
             .map((_, i) => (
-              <Box key={i}>
+              <Box key={i} aria-label="dummy">
                 {i > 0 && <Divider />}
                 <DummyItem />
               </Box>
@@ -110,7 +111,7 @@ const Item = ({ place }: { place: Place }) => {
           <Box>
             {place.web_url && (
               <Button size="xs" bgColor="gray.700">
-                <Link href={place.web_url || "http://example.com"} isExternal>
+                <Link href={place.web_url} isExternal>
                   GO TO WEBSITE
                 </Link>
               </Button>
