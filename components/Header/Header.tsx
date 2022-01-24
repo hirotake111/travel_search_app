@@ -19,7 +19,7 @@ export default function Header() {
         fontSize={{ base: "2xl", md: "2xl" }}
         pt={{ base: "16px", md: "0" }}
       >
-        <Link href="/">Travel Advisor Search</Link>
+        <Link href="/">Travel Search</Link>
       </Text>
       <Flex
         flex="1"
