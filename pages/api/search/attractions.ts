@@ -21,11 +21,11 @@ export default async function getRestaurants(
     },
   };
   try {
+    // perform network call to RapiAPI
+    const { data } = await axios.request(options);
+    // const { data } = await GetMockResponse(); // mock data
+    res.status(200).json({ result: data.data });
   } catch (e) {
     res.status(500).send({ result: e });
   }
-  // perform network call to RapiAPI
-  const { data } = await axios.request(options);
-  // const { data } = await GetMockResponse(); // mock data
-  res.status(200).json({ result: data.data });
 }

@@ -7,6 +7,7 @@ import { useAppSelector } from "../redux/store";
 
 const Home: NextPage = () => {
   const { coordinates } = useAppSelector((s) => s.search);
+  const mapHidden = coordinates?.lat === 0 && coordinates.lng === 0;
 
   return (
     <main
@@ -14,14 +15,13 @@ const Home: NextPage = () => {
         display: "flex",
         flexDirection: "column",
         width: "100vw",
-        height: "100vh",
       }}
     >
       <Box
         h={
-          coordinates
-            ? { base: "128px", sm: "128px", md: "64px", lg: "64px" }
-            : "100vh"
+          mapHidden
+            ? "100vh"
+            : { base: "128px", sm: "128px", md: "64px", lg: "64px" }
         }
         w="100%"
         transition="0.5s"
@@ -29,16 +29,12 @@ const Home: NextPage = () => {
         <Header />
       </Box>
       <Flex
-        h={
-          coordinates
-            ? {
-                base: "calc(100vh - 128px)",
-                sm: "calc(100vh - 128px)",
-                md: "calc(100vh - 64px)",
-                lg: "calc(100vh - 64px)",
-              }
-            : "0px"
-        }
+        h={{
+          base: "calc(100vh - 128px)",
+          sm: "calc(100vh - 128px)",
+          md: "calc(100vh - 64px)",
+          lg: "calc(100vh - 64px)",
+        }}
         transition="0.5s"
       >
         <Box flex={2}>

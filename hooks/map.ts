@@ -31,13 +31,15 @@ export const useCoordinates = (getCrrentPosition: boolean) => {
 
   // when bounds gets updated, then get new places data
   useEffect(() => {
-    if (bounds && bounds.ne.lat) {
-      // first remove all data
-      dispatch(updatePlace([]));
-      getData(searchType, bounds).then((places) => {
-        dispatch(updatePlace(places));
-      });
+    if (!(bounds && bounds.ne.lat)) {
+      console.error("bounds is falsy... skip updating bounds. bounds:", bounds);
+      return;
     }
+    // first remove all data
+    dispatch(updatePlace([]));
+    getData(searchType, bounds).then((places) => {
+      dispatch(updatePlace(places));
+    });
   }, [bounds]);
 
   const setCoordinates = (coordinates: Coords) => {

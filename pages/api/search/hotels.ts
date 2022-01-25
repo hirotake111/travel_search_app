@@ -22,10 +22,7 @@ export default async function getHotel(
   };
   try {
     // perform network call to RapiAPI
-    // const { data } = await axios.request(options);
-    const response = await axios.request(options);
-    const { data } = response;
-    // console.log("status:", response.status);
+    const { data } = await axios.request(options);
     // const { data } = await GetMockResponse(); // mock data
     res.status(200).json({ result: data.data || [] });
   } catch (e) {

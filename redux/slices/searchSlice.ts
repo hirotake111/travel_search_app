@@ -4,7 +4,10 @@ import { Bounds, Coords } from "google-map-react";
 
 const initialState: SearchState = {
   places: [],
-  coordinates: undefined,
+  coordinates: {
+    lat: 0,
+    lng: 0,
+  },
   bounds: undefined,
   zoom: 11,
   selectedPlace: undefined,

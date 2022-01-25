@@ -6,47 +6,35 @@ import { useSelectedPlace } from "../../hooks/selectedPlace";
 import { useAppSelector } from "../../redux/store";
 
 export default function RightColumn() {
-  const { coordinates, setCoordinates, setBoundaries, zoom } =
-    useCoordinates(false);
+  const { coordinates, setBoundaries, zoom } = useCoordinates(false);
   const { setSelectedPlace, selectedPlace } = useSelectedPlace();
 
   const { places, hoveredPlace } = useAppSelector((state) => state.search);
 
   return (
     <Box h="100%" bgColor="ThreeDDarkShadow">
-      {coordinates ? (
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_APIKEY || "" }}
-          center={coordinates}
-          zoom={zoom}
-          onChange={(e) => {
-            console.log("onChange");
-            console.log({ e });
-            // set coordinates and boundaries
-            // setCoordinates({ ...e.center });
-            setBoundaries({ ...e.bounds });
-          }}
-        >
-          {places.map((p, i) => {
-            return (
-              <MapChild
-                key={i}
-                id={p.name}
-                lat={Number(p.latitude)}
-                lng={Number(p.longitude)}
-                onClick={() => setSelectedPlace(p.name)}
-                selected={p.name == hoveredPlace || p.name === selectedPlace}
-              >
-                {p.name}
-              </MapChild>
-            );
-          })}
-        </GoogleMapReact>
-      ) : (
-        <Flex w="100%" h="100%" justifyContent="center" alignItems="center">
-          {/* <Spinner size="xl" /> */}
-        </Flex>
-      )}
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_APIKEY || "" }}
+        center={coordinates}
+        zoom={zoom}
+        onChange={(e) => {
+          console.log("onChange");
+          setBoundaries({ ...e.bounds });
+        }}
+      >
+        {places.map((p, i) => (
+          <MapChild
+            key={i}
+            id={p.name}
+            lat={Number(p.latitude)}
+            lng={Number(p.longitude)}
+            onClick={() => setSelectedPlace(p.name)}
+            selected={p.name == hoveredPlace || p.name === selectedPlace}
+          >
+            {p.name}
+          </MapChild>
+        ))}
+      </GoogleMapReact>
     </Box>
   );
 }
