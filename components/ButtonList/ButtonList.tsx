@@ -18,7 +18,7 @@ export default function ButtonList() {
   return (
     <HStack display={{ base: "none", sm: "none", md: "flex" }}>
       {/** GitHub link */}
-      <Link href="https://github.com/hirotake111" isExternal>
+      <Link href="https://github.com/hirotake111/travel_search_app" isExternal>
         <IconButton aria-label="GitHub" icon={<FaGithub />} />
       </Link>
 
