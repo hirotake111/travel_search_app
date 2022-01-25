@@ -8,6 +8,10 @@ export const getData = async (
   type: SearchType,
   bounds: Bounds
 ): Promise<Place[]> => {
+  if (bounds.ne.lat === undefined) {
+    console.warn("bounds are null");
+    return [];
+  }
   const { data } = await axios.get(`${API_URL}/${type}`, {
     params: {
       tr_latitude: bounds.ne.lat,

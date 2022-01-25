@@ -10,6 +10,8 @@ export const useSearchbar = () => {
 
   const setCoordUsingAutocomplete = () => {
     const location = autocomplete?.getPlace().geometry?.location;
+    const tmp = autocomplete?.getBounds();
+    console.log({ tmp, location });
     if (location) {
       dispatch(
         updateCoordinates({

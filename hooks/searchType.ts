@@ -11,7 +11,8 @@ export const useSearchType = () => {
     // update search type
     dispatch(updateSearchType(type));
     // also fetch data with new type from API
-    if (bounds) {
+    if (bounds && bounds.ne.lat) {
+      console.log("here");
       // clear places data
       dispatch(updatePlace([]));
       getData(type, bounds).then((places) => {

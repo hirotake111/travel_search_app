@@ -7,12 +7,10 @@ import { useAppSelector } from "../../redux/store";
 
 export default function RightColumn() {
   const { coordinates, setCoordinates, setBoundaries, zoom } =
-    useCoordinates(true);
-  const { setSelectedPlace } = useSelectedPlace();
+    useCoordinates(false);
+  const { setSelectedPlace, selectedPlace } = useSelectedPlace();
 
-  const { places, hoveredPlace, selectedPlace } = useAppSelector(
-    (state) => state.search
-  );
+  const { places, hoveredPlace } = useAppSelector((state) => state.search);
 
   return (
     <Box h="100%" bgColor="ThreeDDarkShadow">
@@ -23,8 +21,9 @@ export default function RightColumn() {
           zoom={zoom}
           onChange={(e) => {
             console.log("onChange");
+            console.log({ e });
             // set coordinates and boundaries
-            setCoordinates({ ...e.center });
+            // setCoordinates({ ...e.center });
             setBoundaries({ ...e.bounds });
           }}
         >
@@ -45,7 +44,7 @@ export default function RightColumn() {
         </GoogleMapReact>
       ) : (
         <Flex w="100%" h="100%" justifyContent="center" alignItems="center">
-          <Spinner size="xl" />
+          {/* <Spinner size="xl" /> */}
         </Flex>
       )}
     </Box>

@@ -15,7 +15,7 @@ export default function Searchbar() {
         <InputLeftElement pointerEvents="none">
           <SearchIcon color="gray.300" />
         </InputLeftElement>
-        <Input type="search" placeholder="Search Location..." />
+        <Input type="search" placeholder="Search Location..." size="lg" />
       </InputGroup>
     </Autocomplete>
   );

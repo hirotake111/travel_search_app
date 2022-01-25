@@ -31,7 +31,7 @@ export const useCoordinates = (getCrrentPosition: boolean) => {
 
   // when bounds gets updated, then get new places data
   useEffect(() => {
-    if (bounds) {
+    if (bounds && bounds.ne.lat) {
       // first remove all data
       dispatch(updatePlace([]));
       getData(searchType, bounds).then((places) => {
