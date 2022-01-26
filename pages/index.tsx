@@ -35,12 +35,13 @@ const Home: NextPage = () => {
           md: "calc(100vh - 64px)",
           lg: "calc(100vh - 64px)",
         }}
+        flexDirection={{ base: "column-reverse", md: "row" }}
         transition="0.5s"
       >
-        <Box flex={2}>
+        <Box flex={2} overflowY="hidden">
           <LeftColumn />
         </Box>
-        <Box flex={1.2} display={{ base: "none", sm: "none", md: "block" }}>
+        <Box flex={1.2} display="block">
           <RightColumn />
         </Box>
       </Flex>
